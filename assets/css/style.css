@@ -1,0 +1,39 @@
+::selection {
+	background-color: goldenrod;
+	color: white;
+}
+
+body {
+	background-color: black;
+	color: goldenrod;
+	font-size: 16px;
+}
+
+header {
+	min-height: 10vh;
+}
+
+main {
+	min-height: 80vh;
+	display: flex;
+	line-height: 1.5;
+	text-align: center;
+}
+
+h1 {
+	margin: auto;
+	font-size: 2rem;
+}
+
+h1 span {
+	font-size: 1.5rem;
+	color: white;
+	font-weight: 200;
+}
+
+footer {
+	min-height: 10vh;
+	text-align: center;
+	font-size: 1rem;
+	color: #2f2e2e;
+}
