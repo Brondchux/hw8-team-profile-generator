@@ -1,11 +1,11 @@
 ::selection {
-	background-color: goldenrod;
+	background-color: #0fa5aa;
 	color: white;
 }
 
 body {
 	background-color: black;
-	color: goldenrod;
+	color: #0fa5aa;
 	font-size: 16px;
 }
 
