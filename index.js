@@ -2,13 +2,14 @@
 
 // DEPENDENCES ======================
 const Manager = require("./lib/manager");
-const Employee = require("./lib/employee");
 const Intern = require("./lib/intern");
+const Engineer = require("./lib/Engineer");
+const companyHtml = require("./lib/company");
 const inquirer = require("inquirer");
 const fs = require("fs");
-const Engineer = require("./lib/Engineer");
 
 // DATA ======================
+const fileName = "members.html";
 let membersArray = [];
 
 // FUNCTIONS ======================
@@ -92,12 +93,20 @@ const askQuestions = (questionsArray) => {
 
 // Repeate the questions
 const repeatQuestions = (usersResponses) => {
+	// store member in array
+	storeNewMember(usersResponses);
 	console.log("usersResponses:", usersResponses);
 	if (usersResponses.addMember) {
 		return init();
 	}
-	// Otherwise run html function
+	// otherwise run html function
 	const a = newEmployeeFromClass(usersResponses);
+	console.log("membersArray:", membersArray);
+};
+
+// Store team member details in array
+const storeNewMember = (memberObj) => {
+	membersArray.push(memberObj);
 };
 
 // Create new employee info using their respective class
@@ -123,6 +132,13 @@ const newEmployeeFromClass = ({
 			break;
 	}
 	return employeeCardInfo;
+};
+
+// Generate the html for the webpage
+const generateHtml = () => {
+	fs.writeFile(fileName, companyHtml, (err) => {
+		if (err) throw err;
+	});
 };
 
 // Start the app
