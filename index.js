@@ -4,7 +4,6 @@
 const Manager = require("./lib/manager");
 const Intern = require("./lib/intern");
 const Engineer = require("./lib/Engineer");
-const companyHtml = require("./lib/company");
 const inquirer = require("inquirer");
 const fs = require("fs");
 
@@ -112,18 +111,18 @@ const askQuestions = (questionsArray) => {
 
 // Repeate the questions
 const repeatQuestions = (usersResponses) => {
-	console.log("usersResponses:", usersResponses);
-
 	// otherwise run html function
 	const completeUserResponse = newEmployeeFromClass(usersResponses);
 
 	// store member in array
 	storeNewMember(completeUserResponse);
 
+	// ask user to enter more team members
 	if (usersResponses.addMember) {
 		return init();
-	} else {
-		// generate the html setup template
+	}
+	// otherwise generate the html cards for the added members
+	else {
 		generatEmployeeCards(membersArray);
 	}
 };
@@ -203,7 +202,7 @@ const generateHtml = (employeeCardsArr) => {
 		<div class="jumbotron">
 			<div class="jumbotron jumbotron-fluid">
 				<div class="container">
-					<h1 class="display-4">Meet the team!</h1>
+					<h1 class="display-3 font-weight-bold">Meet the team!</h1>
 					<p class="lead">
 						Below is a list of the team and what their individual roles are:
 					</p>
@@ -215,6 +214,9 @@ const generateHtml = (employeeCardsArr) => {
 				${employeeCardsArr}
 			</div>
 		</div>
+		<footer class="text-center mt-5">
+			<small>&copy; Copyright 2021 Gospel Chukwu's Team Profile Generator</small>
+		</footer>
 	</body>
 </html>`;
 
@@ -226,11 +228,11 @@ const generateHtml = (employeeCardsArr) => {
 // Generate each employee card
 const generatEmployeeCards = (employees) => {
 	if (!employees) return;
-	const employeeCards = employees.map((employee) => {
-		return `
-<div class="col-3 mr-0 mb-3">
+	const employeeCards = employees
+		.map((employee) => {
+			return `<div class="col-3 mb-3">
 	<div class="card">
-		<div class="card-header bg-success text-light">
+		<div class="card-header">
 			<h2 class="text-capitalize">${employee.name}</h2>
 			<h4><i class="fas fa-${employee.icon}"></i> ${employee.role}</h4>
 		</div>
@@ -244,9 +246,9 @@ const generatEmployeeCards = (employees) => {
 			</div>
 		</div>
 	</div>
-</div>
-		`;
-	});
+</div>`;
+		})
+		.join("");
 
 	console.log(employeeCards);
 	console.log("employeeCards length:", employeeCards.length);
