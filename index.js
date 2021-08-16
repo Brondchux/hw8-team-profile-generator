@@ -113,24 +113,24 @@ const askQuestions = (questionsArray) => {
 // Repeate the questions
 const repeatQuestions = (usersResponses) => {
 	console.log("usersResponses:", usersResponses);
-	if (usersResponses.addMember) {
-		return init();
-	}
 
 	// otherwise run html function
 	const completeUserResponse = newEmployeeFromClass(usersResponses);
 
 	// store member in array
 	storeNewMember(completeUserResponse);
+
+	if (usersResponses.addMember) {
+		return init();
+	} else {
+		// generate the html setup template
+		generatEmployeeCards(membersArray);
+	}
 };
 
 // Store team member details in array
 const storeNewMember = (memberObj) => {
 	membersArray.push(memberObj);
-	console.log("membersArray:", membersArray);
-
-	// generate the html setup template
-	generatEmployeeCards(membersArray);
 };
 
 // Create new employee info using their respective class
@@ -144,15 +144,34 @@ const newEmployeeFromClass = ({
 	school,
 }) => {
 	let employeeCardInfo;
+	let theRole;
+	let icon;
+	let uniqueQues;
+	let uniqueAns;
 	switch (role) {
 		case "manager":
-			employeeCardInfo = new Manager(id, name, email, office);
+			const managerInfo = new Manager(id, name, email, office);
+			theRole = managerInfo.getRole();
+			icon = managerInfo.getIcon();
+			uniqueQues = managerInfo.getUniqueQuestion();
+			uniqueAns = managerInfo.getUniqueAnswer();
+			employeeCardInfo = { ...managerInfo, role, icon, uniqueQues, uniqueAns };
 			break;
 		case "engineer":
-			employeeCardInfo = new Engineer(id, name, email, github);
+			const engineerInfo = new Engineer(id, name, email, github);
+			theRole = engineerInfo.getRole();
+			icon = engineerInfo.getIcon();
+			uniqueQues = engineerInfo.getUniqueQuestion();
+			uniqueAns = engineerInfo.getUniqueAnswer();
+			employeeCardInfo = { ...engineerInfo, role, icon, uniqueQues, uniqueAns };
 			break;
 		default:
-			employeeCardInfo = new Intern(id, name, email, school);
+			const internInfo = new Intern(id, name, email, school);
+			theRole = internInfo.getRole();
+			icon = internInfo.getIcon();
+			uniqueQues = internInfo.getUniqueQuestion();
+			uniqueAns = internInfo.getUniqueAnswer();
+			employeeCardInfo = { ...internInfo, role, icon, uniqueQues, uniqueAns };
 			break;
 	}
 	return employeeCardInfo;
@@ -209,18 +228,18 @@ const generatEmployeeCards = (employees) => {
 	if (!employees) return;
 	const employeeCards = employees.map((employee) => {
 		return `
-<div class="col-3">
+<div class="col-3 mr-0 mb-3">
 	<div class="card">
 		<div class="card-header bg-success text-light">
-			<h2>${employee.name}</h2>
-			<h4><i class="fas fa-mug-hot"></i> ${employee.role}</h4>
+			<h2 class="text-capitalize">${employee.name}</h2>
+			<h4><i class="fas fa-${employee.icon}"></i> ${employee.role}</h4>
 		</div>
 		<div class="card-body">
 			<div class="card">
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">ID: ${employee.id}</li>
 					<li class="list-group-item">Email: ${employee.email}</li>
-					<li class="list-group-item">Office: West NE</li>
+					<li class="list-group-item">${employee.uniqueQues}: ${employee.uniqueAns}</li>
 				</ul>
 			</div>
 		</div>
