@@ -66,9 +66,9 @@ THEN I exit the application, and the HTML is generated
 
 ## Mock-Up Preview
 
-The following image shows the web application's appearance when completed:
+The completed application should look similar in appearance to the image below:
 
-![This html webpage features five boxes or id cards of auto generated team members.](./dist/assets/images/team-profile-demo.png)
+![This html webpage features five boxes or id cards of auto generated team members.](./assets/images/team-profile-demo.png)
 
 ---
 
@@ -81,11 +81,11 @@ The following image shows the web application's appearance when completed:
 
 ## Tech Stack
 
-![nodejs logo](./dist/assets/images/techs/nodejs.png)
-![npm logo](./dist/assets/images/techs/npm.png)
-![html5 logo](./dist/assets/images/techs/html5.png)
-![css3 logo](./dist/assets/images/techs/css3.png)
-![github logo](./dist/assets/images/techs/github.png)
+![nodejs logo](./assets/images/techs/nodejs.png)
+![npm logo](./assets/images/techs/npm.png)
+![html5 logo](./assets/images/techs/html5.png)
+![css3 logo](./assets/images/techs/css3.png)
+![github logo](./assets/images/techs/github.png)
 
 ---
 
