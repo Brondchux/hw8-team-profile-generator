@@ -76,6 +76,7 @@ The completed application should look similar in appearance to the image below:
 
 1. 🗂 [Click me to view github repository for this project](https://github.com/Brondchux/hw8-team-profile-generator/)
 2. 🌍 [Click me to view deployed application on github pages](https://brondchux.github.io/hw8-team-profile-generator/)
+3. 📺 [Click me to watch the Jest test results via screencastify](https://watch.screencastify.com/v/tLMk4xUYg77v8o9IxlEr/)
 
 ---
 
